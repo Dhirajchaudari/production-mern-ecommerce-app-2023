@@ -1,7 +1,7 @@
 import productModel from "../models/productModel.js";
 import fs from "fs";
 import slugify from "slugify";
-import CategoryModel from "../models/categoryModel.js";
+import categoryModel from "../models/categoryModel.js";
 import braintree from "braintree";
 import orderModel from "../models/orderModel.js";
 import dotenv from "dotenv";
@@ -322,7 +322,7 @@ export const relatedProductController = async (req, resp) => {
 // get product by  category
 export const productCategoryController = async (req, resp) => {
   try {
-    const category = await CategoryModel.findOne({ slug: req.params.slug });
+    const category = await categoryModel.findOne({ slug: req.params.slug });
     const products = await productModel.find({ category }).populate("category");
     resp.status(200).send({
       success: true,
